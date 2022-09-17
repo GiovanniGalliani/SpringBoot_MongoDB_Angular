@@ -1,0 +1,43 @@
+<div class="page-header">
+    <h3>Form gestione clienti</h3>
+</div>
+<form [formGroup]="formCliente" class="col-md-5" (ngSubmit) = "processaForm()">
+    <div class="form-group">
+        <label for="id">ID</label>
+        <input type="text"  name="id" class="form-control" [(ngModel)] = "cliente.id" readonly>
+    </div>
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" name="nome"  class="form-control" [(ngModel)] = "cliente.nome" [formControl]="nome" minlength="2" maxlength="20" pattern="^[a-zA-Z]+$">
+    </div>
+    <div *ngIf="nome.hasError('pattern')" class="alert alert-danger">
+        Il nome accetta solo lettere.
+    </div>
+
+    <div class="form-group">
+        <label for="cognome">Cognome</label>
+        <input type="text" name="cognome"   class="form-control" [(ngModel)] = "cliente.cognome" [formControl]="cognome" minlength="2" maxlength="20" pattern="^[a-zA-Z]+$">
+    </div>
+
+    <div *ngIf="cognome.hasError('pattern')" class="alert alert-danger">
+        Il cognome accetta solo lettere.
+    </div>
+
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="username"  class="form-control" [(ngModel)] = "cliente.username" [formControl]="username" minlength="5" maxlength="10" pattern="^[a-zA-Z0-9]+$">
+    </div>
+
+    <div *ngIf="username.hasError('pattern')" class="alert alert-danger">
+        Lo username accetta solo lettere e numeri
+    </div>
+
+    <div class="form-group">
+        <label for="eta">Et&agrave;</label>
+        <input type="text" name="eta"  class="form-control" [(ngModel)] = "cliente.eta" [formControl]="email">
+    </div>
+
+   
+    <input type="submit" value="Salva cliente" class="btn btn-success" style="margin-top: 30px;">
+
+</form>
